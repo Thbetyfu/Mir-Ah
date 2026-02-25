@@ -15,6 +15,7 @@ import usePrayerTimes from '@/hooks/usePrayerTimes';
 import useHeroMode from '@/hooks/useHeroMode';
 import useNotifications from '@/hooks/useNotifications';
 import useTrackerSummary from '@/hooks/useTrackerSummary';
+import useAppMode from '@/hooks/useAppMode';
 
 import HomeHeader from '@/components/Home/HomeHeader';
 import HeroCard from '@/components/Home/HeroCard';
@@ -22,6 +23,7 @@ import DailyGoalTracker from '@/components/Home/DailyGoalTracker';
 import ToolGrid from '@/components/Home/ToolGrid';
 import DailyKnowledge from '@/components/Home/DailyKnowledge';
 import JurnalCard from '@/components/Home/JurnalCard';
+import MoralMissionCard from '@/components/Home/MoralMissionCard';
 import RamaTalkCard from '@/components/Home/RamaTalkCard';
 import QuoteCard from '@/components/Home/QuoteCard';
 
@@ -59,6 +61,8 @@ export default function MyRamadhanHome() {
     prayerTimes,
     currentTime,
   );
+
+  const { hijabMode, toggleItikafMode, isItikafMode } = useAppMode();
 
   const hero = useHeroMode(prayerTimes, currentTime);
 
@@ -104,47 +108,60 @@ export default function MyRamadhanHome() {
   if (!mounted) return null;
 
   return (
-    <main className='min-h-screen bg-[#F6F9FC] dark:bg-slate-950 text-slate-800 dark:text-slate-100 pb-16 selection:bg-blue-200 dark:selection:bg-blue-800 transition-colors duration-300'>
+    <main className={`min-h-screen ${isItikafMode ? 'bg-slate-900 grayscale dark:bg-black text-slate-400' : 'bg-[#F6F9FC] dark:bg-slate-950 text-slate-800 dark:text-slate-100'} pb-16 selection:bg-blue-200 dark:selection:bg-blue-800 transition-all duration-1000`}>
       {/* SECTION: BACKGROUND DECORATION */}
-      <div className='fixed inset-0 -z-10 pointer-events-none overflow-hidden'>
-        <div className='absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-3xl opacity-60' />
-        <div className='absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-indigo-100/50 dark:bg-indigo-900/20 rounded-full blur-3xl opacity-60' />
-      </div>
+      {!isItikafMode && (
+        <div className='fixed inset-0 -z-10 pointer-events-none overflow-hidden'>
+          <div className='absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-3xl opacity-60' />
+          <div className='absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-indigo-100/50 dark:bg-indigo-900/20 rounded-full blur-3xl opacity-60' />
+        </div>
+      )}
 
       {/* SECTION: MAIN CONTENT CONTAINER */}
       <div className='w-full max-w-md md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto p-5 md:py-8 lg:py-10 lg:px-8'>
-        <HomeHeader
-          user={user}
-          hijriDate={hijriDate}
-          hasUnreadNotif={hasUnreadNotif}
-          onOpenNotification={handleOpenNotification}
-        />
+        {!isItikafMode && (
+          <HomeHeader
+            user={user}
+            hijriDate={hijriDate}
+            hasUnreadNotif={hasUnreadNotif}
+            onOpenNotification={handleOpenNotification}
+          />
+        )}
 
-        <div className='flex flex-col lg:flex-row gap-5 md:gap-6 lg:gap-8 animate-fadeUp'>
+        <div className='flex flex-col lg:flex-row gap-5 md:gap-6 lg:gap-8 animate-fadeUp mt-4'>
           {/* SECTION: LEFT COLUMN (HERO & TOOLS) */}
           <div className='flex-1 flex flex-col gap-5 md:gap-6 lg:gap-6'>
             <HeroCard
               hero={hero}
               userCity={userCity}
               onOpenSchedule={() => setIsScheduleOpen(true)}
+              isItikafMode={isItikafMode}
+              toggleItikafMode={toggleItikafMode}
             />
-            <DailyGoalTracker
-              taskProgress={taskProgress}
-              onClick={() => setIsTrackerOpen(true)}
-            />
-            <ToolGrid />
+            {!isItikafMode && (
+              <DailyGoalTracker
+                taskProgress={taskProgress}
+                onClick={() => setIsTrackerOpen(true)}
+              />
+            )}
+            <ToolGrid isItikafMode={isItikafMode} />
           </div>
 
           {/* SECTION: RIGHT COLUMN (CARDS) */}
           <div className='w-full lg:w-[350px] xl:w-[380px] flex-shrink-0 grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-col gap-5 md:gap-6 lg:gap-6'>
-            <DailyKnowledge hijriDay={hijriDay} dailyTopic={dailyTopic} />
+            {!isItikafMode && <DailyKnowledge hijriDay={hijriDay} dailyTopic={dailyTopic} />}
             <JurnalCard user={user} />
-            <RamaTalkCard />
-            <QuoteCard
-              quote={quoteOfTheDay}
-              isSpinning={isSpinning}
-              onRefresh={randomizeQuote}
-            />
+            <MoralMissionCard />
+            {!isItikafMode && (
+              <>
+                <RamaTalkCard />
+                <QuoteCard
+                  quote={quoteOfTheDay}
+                  isSpinning={isSpinning}
+                  onRefresh={randomizeQuote}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>

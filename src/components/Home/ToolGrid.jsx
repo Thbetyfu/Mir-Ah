@@ -80,12 +80,15 @@ const TOOLS = [
  * ToolGrid — grid 4 kolom (mobile) / 8 kolom (tablet) / 4 kolom (desktop)
  * untuk navigasi ke fitur-fitur utama aplikasi.
  */
-const ToolGrid = () => {
+const ToolGrid = ({ isItikafMode }) => {
   const router = useRouter();
 
+  // Jika mode i'tikaf aktif, hanya tampilkan Al-Qur'an
+  const displayedTools = isItikafMode ? TOOLS.filter(t => t.title === "Al-Qur'an") : TOOLS;
+
   return (
-    <div className='grid grid-cols-4 md:grid-cols-8 lg:grid-cols-4 gap-3 mt-1'>
-      {TOOLS.map((tool) => (
+    <div className={`grid ${isItikafMode ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-1' : 'grid-cols-4 md:grid-cols-8 lg:grid-cols-4'} gap-3 mt-1`}>
+      {displayedTools.map((tool) => (
         <ToolCard
           key={tool.route}
           icon={tool.icon}

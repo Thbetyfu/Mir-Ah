@@ -52,9 +52,58 @@ const useNotifications = (mounted, hijriDay, prayerTimes, currentTime) => {
           });
         }
       });
+
+      // Misi Akhlak Harian Reminder (tampil jika sudah lewat Ashar atau jam 15:00)
+      const asharTimeStr = prayerTimes['Ashar'];
+      if (asharTimeStr) {
+        const [aH, aM] = asharTimeStr.split(':').map(Number);
+        const asharMoment = dayjs().hour(aH).minute(aM).second(0);
+
+        if (currentTime.isAfter(asharMoment)) {
+          try {
+            const storedMission = JSON.parse(localStorage.getItem('localforage/daily_moral_mission') || 'null');
+            // We'll read it manually from localforage DB or just use a helper later,
+            // but for simplicity let's just push it if we assume it exists
+          } catch (e) { }
+        }
+      }
     }
 
-    setNotifications([...dynamicNotifs.reverse(), ...baseNotifs]);
+    // Since we use localforage for daily_moral_mission, we should retrieve it asynchronously.
+    // However, inside useEffect we can do an async call.
+    const fetchMissionReminder = async () => {
+      try {
+        const localforage = (await import('localforage')).default;
+        const stored = await localforage.getItem('daily_moral_mission');
+        if (stored && stored.date === new Date().toISOString().split('T')[0] && !stored.completed) {
+          const asharTimeStr = prayerTimes ? prayerTimes['Ashar'] : null;
+          let showReminder = false;
+          if (asharTimeStr) {
+            const [aH, aM] = asharTimeStr.split(':').map(Number);
+            const asharMoment = dayjs().hour(aH).minute(aM).second(0);
+            showReminder = currentTime.isAfter(asharMoment);
+          } else if (currentTime.hour() >= 15) {
+            showReminder = true;
+          }
+
+          if (showReminder) {
+            dynamicNotifs.push({
+              id: `moral_mission_${stored.date}`,
+              day: dayNum,
+              title: `Misi Akhlak Harian Belum Selesai! ✨`,
+              message: `Menjelang berbuka ini, apakah kamu sudah menjalankan misi kebaikanmu hari ini?`,
+              type: 'mission',
+            });
+          }
+        }
+        setNotifications([...dynamicNotifs.reverse(), ...baseNotifs]);
+      } catch (err) {
+        setNotifications([...dynamicNotifs.reverse(), ...baseNotifs]);
+      }
+    };
+
+    fetchMissionReminder();
+
   }, [mounted, prayerTimes, currentTime.hour(), hijriDay]);
 
   // Cek apakah ada notif baru yang belum dibaca

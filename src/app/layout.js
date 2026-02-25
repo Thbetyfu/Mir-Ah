@@ -1,6 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import SideNav from '@/components/SideNav';
+import ItikafTimer from '@/components/ItikafTimer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }) {
           }}
         />
         <SideNav />
+        <ItikafTimer />
         {children}
       </body>
     </html>

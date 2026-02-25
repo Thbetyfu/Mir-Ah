@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 export default function useAppMode() {
   const [isPWA, setIsPWA] = useState(false);
+  const [isItikafMode, setIsItikafMode] = useState(false);
 
   useEffect(() => {
     // Fungsi untuk mengecek apakah aplikasi berjalan sebagai PWA (Standalone)
@@ -23,6 +24,12 @@ export default function useAppMode() {
       .matchMedia('(display-mode: standalone)')
       .addEventListener('change', checkMode);
 
+    // Load Itikaf mode dari local storage
+    const savedItikaf = localStorage.getItem('itikafMode') === 'true';
+    if (savedItikaf) {
+      setIsItikafMode(true);
+    }
+
     return () => {
       window
         .matchMedia('(display-mode: standalone)')
@@ -30,5 +37,13 @@ export default function useAppMode() {
     };
   }, []);
 
-  return { isPWA };
+  const toggleItikafMode = () => {
+    setIsItikafMode((prev) => {
+      const newValue = !prev;
+      localStorage.setItem('itikafMode', newValue.toString());
+      return newValue;
+    });
+  };
+
+  return { isPWA, isItikafMode, toggleItikafMode };
 }

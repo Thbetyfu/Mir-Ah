@@ -7,7 +7,7 @@ import { CalendarDays, Moon } from 'lucide-react';
  * mode berbuka, tarawih, tahajud, dll.
  * Menerima objek `hero` dari hook useHeroMode.
  */
-const HeroCard = ({ hero, userCity, onOpenSchedule }) => {
+const HeroCard = ({ hero, userCity, onOpenSchedule, isItikafMode, toggleItikafMode }) => {
   if (!hero) {
     return (
       <div className='min-h-[300px] rounded-[2.5rem] bg-slate-200 dark:bg-slate-800 animate-pulse' />
@@ -24,7 +24,7 @@ const HeroCard = ({ hero, userCity, onOpenSchedule }) => {
       <div className='absolute -top-20 -right-20 w-72 h-72 lg:w-96 lg:h-96 bg-white/10 rounded-full blur-3xl animate-pulse' />
       <div className='absolute -bottom-24 -left-24 w-72 h-72 lg:w-96 lg:h-96 bg-white/10 rounded-full blur-3xl' />
 
-      {/* Top bar: kota & tombol jadwal */}
+      {/* Top bar: kota & tombol jadwal & itikaf */}
       <div className='relative z-10 flex justify-between items-center'>
         <div className='flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10'>
           <span
@@ -33,15 +33,24 @@ const HeroCard = ({ hero, userCity, onOpenSchedule }) => {
             {userCity}
           </span>
         </div>
-        <button
-          onClick={onOpenSchedule}
-          className='p-2 hover:bg-white/10 rounded-full transition-colors backdrop-blur-sm'
-        >
-          <CalendarDays
-            size={18}
-            className='text-white/90 cursor-pointer md:w-5 md:h-5'
-          />
-        </button>
+        <div className='flex items-center gap-2'>
+          <button
+            onClick={toggleItikafMode}
+            className={`px-3 py-1.5 text-[10px] md:text-xs font-bold rounded-full transition-colors backdrop-blur-sm shadow-sm ${isItikafMode ? 'bg-amber-500/80 text-white' : 'bg-white/10 text-white/90 hover:bg-white/20'}`}
+            title="Mode Digital I'tikaf"
+          >
+            {isItikafMode ? "Kembali" : "I'tikaf"}
+          </button>
+          <button
+            onClick={onOpenSchedule}
+            className='p-2 hover:bg-white/10 rounded-full transition-colors backdrop-blur-sm'
+          >
+            <CalendarDays
+              size={18}
+              className='text-white/90 cursor-pointer md:w-5 md:h-5'
+            />
+          </button>
+        </div>
       </div>
 
       {/* Konten tengah: label & countdown */}

@@ -139,7 +139,25 @@ export const StorageService = {
   },
 
   // =====================================================================
-  // 7. FUNGSI RESET / DANGER ZONE
+  // 7. MORAL MISSION & PROGRESS
+  // =====================================================================
+  async getMoralProgress() {
+    return (await localforage.getItem('moral_progress')) || { score: 0, completedMissions: [] };
+  },
+
+  async saveMoralProgress(missionData) {
+    const progress = await this.getMoralProgress();
+    progress.score += 10; // Setiap misi berhasil +10 poin
+    progress.completedMissions.push({
+      ...missionData,
+      completedAt: new Date().toISOString(),
+    });
+    await localforage.setItem('moral_progress', progress);
+    return progress;
+  },
+
+  // =====================================================================
+  // 8. FUNGSI RESET / DANGER ZONE
   // =====================================================================
   async clearAllData() {
     await localforage.removeItem('trackers');

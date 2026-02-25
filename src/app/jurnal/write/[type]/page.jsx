@@ -93,17 +93,44 @@ export default function WriteJournal() {
     const finalTitle = title.trim() ? title : 'Catatan Harian';
 
     try {
+      // 1. Analyze Emotion
+      const { analyzeEmotionLocal } = await import('@/utils/emotionAnalysis');
+      const emotionData = analyzeEmotionLocal(content);
+      const userMood = selectedMood || emotionData.dominantEmotion;
+
       const newEntry = {
         id: Date.now().toString(),
         category: type,
         title: finalTitle,
         content,
-        mood: selectedMood,
+        mood: userMood,
+        emotionScores: emotionData.scores,
         created_at: new Date().toISOString(),
       };
       const journals = (await localforage.getItem('journal_entries')) || [];
       journals.unshift(newEntry);
       await localforage.setItem('journal_entries', journals);
+
+      // 2. Call Murabbi API to get Moral Mission
+      try {
+        const res = await fetch('/api/murabbi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ emotion: userMood, journalContent: content })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          // Simpan moral mission ke local storage
+          await localforage.setItem('daily_moral_mission', {
+            date: new Date().toISOString().split('T')[0],
+            text: data.reply,
+            completed: false
+          });
+        }
+      } catch (err) {
+        console.error("Gagal mendapatkan Misi Akhlak", err);
+      }
 
       setSaved(true);
       setTimeout(() => router.push('/jurnal'), 800);
@@ -205,11 +232,10 @@ export default function WriteJournal() {
                     onClick={() =>
                       setSelectedMood(m.id === selectedMood ? '' : m.id)
                     }
-                    className={`flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-2xl border transition-all shrink-0 md:w-full ${
-                      selectedMood === m.id
+                    className={`flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-2xl border transition-all shrink-0 md:w-full ${selectedMood === m.id
                         ? 'bg-[#1e3a8a] dark:bg-blue-600 border-slate-200 dark:border-slate-700 shadow-md scale-105'
                         : 'bg-white/50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-700 opacity-60 hover:opacity-100'
-                    }`}
+                      }`}
                   >
                     <span className='text-xl leading-none'>{m.icon}</span>
                     <span
