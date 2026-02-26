@@ -3,14 +3,12 @@
 import {
   HelpCircle,
   Shield,
-  Info,
   ChevronRight,
 } from 'lucide-react';
 
 const BantuanMenuSection = ({
   onOpenBantuan,
   onOpenPrivasi,
-  onOpenTentang,
 }) => (
   <div>
     <p className='text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 ml-2'>
@@ -37,7 +35,7 @@ const BantuanMenuSection = ({
 
       <button
         onClick={onOpenPrivasi}
-        className='w-full flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors border-b border-slate-50 dark:border-slate-800'
+        className='w-full flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors'
       >
         <div className='flex items-center gap-3'>
           <div className='p-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/40 text-emerald-500 dark:text-emerald-400'>
@@ -45,24 +43,6 @@ const BantuanMenuSection = ({
           </div>
           <span className='font-semibold text-slate-700 dark:text-slate-200 text-sm'>
             Kebijakan Privasi
-          </span>
-        </div>
-        <ChevronRight
-          size={16}
-          className='text-slate-300 dark:text-slate-600'
-        />
-      </button>
-
-      <button
-        onClick={onOpenTentang}
-        className='w-full flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors'
-      >
-        <div className='flex items-center gap-3'>
-          <div className='p-2 rounded-xl bg-purple-50 dark:bg-purple-900/40 text-purple-500 dark:text-purple-400'>
-            <Info size={18} />
-          </div>
-          <span className='font-semibold text-slate-700 dark:text-slate-200 text-sm'>
-            Tentang MyRamadhan
           </span>
         </div>
         <ChevronRight
