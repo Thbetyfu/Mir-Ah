@@ -6,7 +6,7 @@ import ItikafTimer from '@/components/ItikafTimer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'MyRamadhan - Pendamping Ibadah',
+  title: 'Mir-Ah - Pendamping Ibadah',
   description:
     "Aplikasi pendamping ibadah Ramadhan lengkap dengan Al-Qur'an, Tracker, Jurnal, dan Jadwal Sholat secara offline.",
   manifest: '/manifest.json',
@@ -17,7 +17,7 @@ export const metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'MyRamadhan',
+    title: 'Mir-Ah',
   },
   formatDetection: {
     telephone: false,
