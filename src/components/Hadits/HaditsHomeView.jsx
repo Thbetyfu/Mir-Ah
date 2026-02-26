@@ -11,8 +11,8 @@ import {
 } from 'lucide-react';
 
 /**
- * HaditsHomeView — tampilan beranda Hadits.
- * Berisi banner terakhir dibaca, search AI ke RamaTalk,
+ * Menawarkan redirect ke Mir'Ah AI untuk pertanyaan yang lebih lanjut.
+ * Berisi banner terakhir dibaca, search AI ke Mir'Ah AI,
  * dan grid seluruh kitab hadits.
  *
  * @prop {Array}    books
@@ -74,7 +74,7 @@ const HaditsHomeView = ({
             </button>
           </div>
 
-          {/* Search → AI RamaTalk */}
+          {/* Search → AI Mir'Ah AI */}
           <form onSubmit={handleSearchTopic} className='relative'>
             <Search
               className='absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500'
@@ -140,25 +140,25 @@ const HaditsHomeView = ({
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 lg:gap-5'>
           {loadingBooks
             ? [...Array(9)].map((_, i) => (
-                <div
-                  key={i}
-                  className='h-24 bg-slate-200 dark:bg-slate-700 animate-pulse rounded-2xl'
-                />
-              ))
+              <div
+                key={i}
+                className='h-24 bg-slate-200 dark:bg-slate-700 animate-pulse rounded-2xl'
+              />
+            ))
             : books.map((book) => (
-                <div
-                  key={book.id}
-                  onClick={() => onOpenBook(book)}
-                  className='bg-white dark:bg-slate-800 p-4 md:p-5 rounded-2xl md:rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-emerald-200 dark:hover:border-emerald-700 transition-all cursor-pointer flex flex-col justify-center h-full min-h-[100px] group'
-                >
-                  <h3 className='font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-tight mb-1'>
-                    {book.name}
-                  </h3>
-                  <p className='text-[10px] md:text-xs font-medium text-slate-400 dark:text-slate-500'>
-                    {book.available.toLocaleString('id-ID')} Hadits
-                  </p>
-                </div>
-              ))}
+              <div
+                key={book.id}
+                onClick={() => onOpenBook(book)}
+                className='bg-white dark:bg-slate-800 p-4 md:p-5 rounded-2xl md:rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-emerald-200 dark:hover:border-emerald-700 transition-all cursor-pointer flex flex-col justify-center h-full min-h-[100px] group'
+              >
+                <h3 className='font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-tight mb-1'>
+                  {book.name}
+                </h3>
+                <p className='text-[10px] md:text-xs font-medium text-slate-400 dark:text-slate-500'>
+                  {book.available.toLocaleString('id-ID')} Hadits
+                </p>
+              </div>
+            ))}
         </div>
       </main>
     </div>

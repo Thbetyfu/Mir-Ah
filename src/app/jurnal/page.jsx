@@ -299,7 +299,7 @@ export default function JurnalPage() {
               className='w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-md active:scale-95'
             >
               <Sparkles size={18} />
-              Curhat ke Ramatalk
+              Curhat ke Mir'Ah
             </button>
           </div>
         )}

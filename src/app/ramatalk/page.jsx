@@ -28,7 +28,7 @@ const RAMATALK_MODES = [
   { id: 'hadits', label: 'Cari Hadits', icon: ScrollText },
 ];
 
-function RamatalkContent() {
+function MirAhContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -63,7 +63,7 @@ function RamatalkContent() {
           {
             id: 1,
             role: 'ai',
-            text: `Halo! 👋\nAku lihat kamu baru saja menulis catatan berjudul "${parsedContext.title}". Ada yang mau diceritakan lebih lanjut tentang perasaanmu? Aku siap dengerin. 🤍`,
+            text: `Halo! 👋\nAku lihat kamu baru saja menulis catatan berjudul "${parsedContext.title}". Ada yang mau diceritakan lebih lanjut tentang perasaanmu? Aku (Mir'Ah) siap dengerin. 🤍`,
           },
         ]);
         sessionStorage.removeItem('ramatalk_journal_context');
@@ -75,7 +75,7 @@ function RamatalkContent() {
         {
           id: 1,
           role: 'ai',
-          text: 'Assalamualaikum! 👋\nAku Ramatalk. Mau ngobrol santai atau cari info ibadah spesifik? Pilih mode di atas dan tanyain aja ke aku!',
+          text: 'Assalamualaikum! 👋\nAku Mir\'Ah. Mau ngobrol santai atau cari info ibadah spesifik? Pilih mode di atas dan tanyain aja ke aku!',
         },
       ]);
     }
@@ -163,7 +163,7 @@ function RamatalkContent() {
         </div>
 
         <div>
-          <h1 className='font-bold leading-tight'>Ramatalk AI</h1>
+          <h1 className='font-bold leading-tight'>Mir'Ah AI</h1>
           <div className='flex items-center gap-1.5'>
             <span className='w-2 h-2 bg-emerald-500 rounded-full animate-pulse'></span>
             <p className='text-xs text-slate-500 dark:text-slate-400 font-medium'>
@@ -178,11 +178,10 @@ function RamatalkContent() {
           <button
             key={mode.id}
             onClick={() => setActiveMode(mode.id)}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap transition-all ${
-              activeMode === mode.id
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap transition-all ${activeMode === mode.id
                 ? 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 shadow-sm'
                 : 'bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
-            }`}
+              }`}
           >
             <mode.icon
               size={14}
@@ -201,26 +200,23 @@ function RamatalkContent() {
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`flex items-end gap-2 ${
-              msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'
-            }`}
+            className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'
+              }`}
           >
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                msg.role === 'user'
+              className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user'
                   ? 'bg-slate-200 dark:bg-slate-700'
                   : 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-300'
-              }`}
+                }`}
             >
               {msg.role === 'user' ? <User size={16} /> : <Bot size={18} />}
             </div>
 
             <div
-              className={`max-w-[85%] p-4 rounded-2xl text-[14px] leading-relaxed shadow-sm whitespace-pre-wrap ${
-                msg.role === 'user'
+              className={`max-w-[85%] p-4 rounded-2xl text-[14px] leading-relaxed shadow-sm whitespace-pre-wrap ${msg.role === 'user'
                   ? 'bg-slate-800 dark:bg-slate-700 text-white rounded-tr-none'
                   : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-100 dark:border-slate-800 rounded-tl-none'
-              }`}
+                }`}
             >
               {msg.text}
             </div>
@@ -262,9 +258,8 @@ function RamatalkContent() {
             type='text'
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={`Ketik untuk mode ${
-              RAMATALK_MODES.find((m) => m.id === activeMode)?.label
-            }...`}
+            placeholder={`Ketik untuk mode ${RAMATALK_MODES.find((m) => m.id === activeMode)?.label
+              }...`}
             className='w-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-transparent rounded-full py-3.5 pl-5 pr-12 focus:bg-white dark:focus:bg-slate-900 focus:border-indigo-300 dark:focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-500/20 outline-none transition-all text-sm'
             disabled={isLoading}
           />
@@ -291,7 +286,7 @@ export default function RamatalkPage() {
           </div>
         }
       >
-        <RamatalkContent />
+        <MirAhContent />
       </Suspense>
     </ProtectedRoute>
   );

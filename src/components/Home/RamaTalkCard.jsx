@@ -4,7 +4,7 @@ import { Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 /**
- * RamaTalkCard — CTA card menuju fitur AI chat RamaTalk.
+ * Mir'Ah AI — CTA card menuju fitur AI chat Mir'Ah.
  */
 const RamaTalkCard = () => {
   const router = useRouter();
@@ -21,14 +21,14 @@ const RamaTalkCard = () => {
         <div className='flex items-center gap-2 mb-4'>
           <Sparkles size={16} className='text-indigo-200' />
           <p className='text-[10px] md:text-xs lg:text-xs uppercase tracking-[0.3em] text-indigo-200 font-bold'>
-            Ramatalk AI
+            Mir'Ah AI
           </p>
         </div>
         <h3 className='text-xl md:text-2xl lg:text-2xl font-bold bg-gradient-to-b from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent mb-2'>
           Tanya Seputar Ibadah
         </h3>
         <p className='text-sm text-indigo-100/80 leading-relaxed'>
-          Butuh penjelasan fiqih atau hukum puasa? Ramatalk siap membantu 🤍
+          Butuh penjelasan fiqih atau hukum puasa? Mir'Ah siap membantu 🤍
         </p>
       </div>
     </div>

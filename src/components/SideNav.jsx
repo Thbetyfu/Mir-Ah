@@ -126,7 +126,7 @@ export default function SideNav() {
       {
         path: '/ramatalk',
         icon: MessageCircle,
-        label: 'RamaTalk AI',
+        label: "Mir'Ah AI",
         activeColor: 'text-[#1e3a8a] dark:text-blue-400',
         bgHover: 'hover:bg-blue-50 dark:hover:bg-blue-900/30',
       },
@@ -206,10 +206,9 @@ export default function SideNav() {
                       }}
                       className={`
                         relative p-3 rounded-2xl flex items-center justify-center transition-all duration-300
-                        ${
-                          isActive
-                            ? `bg-slate-100 dark:bg-slate-800 shadow-inner scale-95 ${item.activeColor}`
-                            : `text-slate-400 dark:text-slate-500 ${item.bgHover} hover:scale-110 hover:-translate-x-1`
+                        ${isActive
+                          ? `bg-slate-100 dark:bg-slate-800 shadow-inner scale-95 ${item.activeColor}`
+                          : `text-slate-400 dark:text-slate-500 ${item.bgHover} hover:scale-110 hover:-translate-x-1`
                         }
                       `}
                     >
