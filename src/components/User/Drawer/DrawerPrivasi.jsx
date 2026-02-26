@@ -4,7 +4,7 @@ import { Shield } from 'lucide-react';
 import DrawerPanel from '@/components/_shared/DrawerPanel';
 
 /**
- * DrawerPrivasi — informasi kebijakan privasi MyRamadhan.
+ * DrawerPrivasi — informasi kebijakan privasi Mir-Ah.
  */
 const DrawerPrivasi = ({ open, onClose }) => (
   <DrawerPanel

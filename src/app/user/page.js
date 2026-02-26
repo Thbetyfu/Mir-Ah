@@ -112,7 +112,7 @@ export default function UserProfile() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `backup_myramadhan_${new Date().getTime()}.json`;
+      a.download = `backup_mirah_${new Date().getTime()}.json`;
       a.click();
     } catch (error) {
       console.error('Export gagal', error);
@@ -207,7 +207,7 @@ export default function UserProfile() {
         </div>
 
         <p className='text-center text-[10px] font-medium text-slate-400 dark:text-slate-600 mt-6 md:mt-10 mb-2'>
-          MyRamadhan App v1.1.0 &copy; {new Date().getFullYear()}
+          Mir-Ah App v1.1.0 &copy; {new Date().getFullYear()}
         </p>
       </main>
 

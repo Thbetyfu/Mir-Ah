@@ -4,7 +4,7 @@ import { HelpCircle } from 'lucide-react';
 import DrawerPanel from '@/components/_shared/DrawerPanel';
 
 /**
- * DrawerBantuan — konten FAQ penggunaan MyRamadhan.
+ * DrawerBantuan — konten FAQ penggunaan Mir-Ah.
  */
 const DrawerBantuan = ({ open, onClose }) => (
   <DrawerPanel

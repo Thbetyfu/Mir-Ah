@@ -17,13 +17,12 @@ export async function POST(request) {
     // ─── Ramadhan context ───────────────────────────────────────────────────────
     const ramadhanContext =
       day > 0
-        ? `Sekarang adalah hari ke-${day} Ramadhan 1447 H.${
-            day >= 21
-              ? ' Ini adalah 10 malam terakhir Ramadhan — waktu paling istimewa.'
-              : day >= 11
-                ? ' Ini adalah 10 hari pertengahan Ramadhan.'
-                : ' Ini adalah 10 hari pertama Ramadhan.'
-          }`
+        ? `Sekarang adalah hari ke-${day} Ramadhan 1447 H.${day >= 21
+          ? ' Ini adalah 10 malam terakhir Ramadhan — waktu paling istimewa.'
+          : day >= 11
+            ? ' Ini adalah 10 hari pertengahan Ramadhan.'
+            : ' Ini adalah 10 hari pertama Ramadhan.'
+        }`
         : 'Ramadhan belum dimulai atau sudah selesai.';
 
     // ─── Mode instructions ──────────────────────────────────────────────────────
@@ -163,16 +162,15 @@ Cara merespons:
     }
 
     // ─── System prompt ──────────────────────────────────────────────────────────
-    const systemPrompt = `Kamu adalah Ramatalk, AI pendamping Ramadhan dari aplikasi MyRamadhan yang dibuat khusus untuk Muslim Indonesia.
+    const systemPrompt = `Kamu adalah Ramatalk, AI pendamping Ramadhan dari aplikasi Mir-Ah yang dibuat khusus untuk Muslim Indonesia.
 
 KONTEKS SAAT INI:
 - Waktu: ${greeting} (${timeString} WIB)
 - ${ramadhanContext}
-${
-  journalContext
-    ? `\nINFO DARI JURNAL USER (gunakan untuk memahami kondisi emosi user jika relevan):\n${journalContext}`
-    : ''
-}
+${journalContext
+        ? `\nINFO DARI JURNAL USER (gunakan untuk memahami kondisi emosi user jika relevan):\n${journalContext}`
+        : ''
+      }
 
 ${modeInstructions}
 

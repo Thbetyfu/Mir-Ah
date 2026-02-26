@@ -36,10 +36,10 @@ dayjs.extend(relativeTime);
 dayjs.extend(duration);
 
 /**
- * Halaman Beranda Utama Aplikasi MyRamadhan (App Router)
+ * Halaman Beranda Utama Aplikasi Mir-Ah (App Router)
  * Bertugas mengoordinasikan seluruh state global untuk dashboard harian
  */
-export default function MyRamadhanHome() {
+export default function MirAhHome() {
   const { user } = useUser();
 
   const [mounted, setMounted] = useState(false);
