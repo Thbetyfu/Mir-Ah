@@ -1,0 +1,20 @@
+{
+  "name": "automasi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:performa": "node scripts/performance-audit.js",
+    "test:keamanan": "powershell -File scripts/security-check.ps1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^12.8.2"
+  }
+}

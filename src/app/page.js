@@ -62,7 +62,7 @@ export default function MyRamadhanHome() {
     currentTime,
   );
 
-  const { hijabMode, toggleItikafMode, isItikafMode } = useAppMode();
+  const { toggleItikafMode, isItikafMode } = useAppMode();
 
   const hero = useHeroMode(prayerTimes, currentTime);
 
@@ -108,7 +108,10 @@ export default function MyRamadhanHome() {
   if (!mounted) return null;
 
   return (
-    <main className={`min-h-screen ${isItikafMode ? 'bg-slate-900 grayscale dark:bg-black text-slate-400' : 'bg-[#F6F9FC] dark:bg-slate-950 text-slate-800 dark:text-slate-100'} pb-16 selection:bg-blue-200 dark:selection:bg-blue-800 transition-all duration-1000`}>
+    <main
+      data-itikaf-active={isItikafMode}
+      className={`min-h-screen ${isItikafMode ? 'bg-slate-900 grayscale dark:bg-black text-slate-400' : 'bg-[#F6F9FC] dark:bg-slate-950 text-slate-800 dark:text-slate-100'} pb-16 selection:bg-blue-200 dark:selection:bg-blue-800 transition-all duration-1000`}
+    >
       {/* SECTION: BACKGROUND DECORATION */}
       {!isItikafMode && (
         <div className='fixed inset-0 -z-10 pointer-events-none overflow-hidden'>

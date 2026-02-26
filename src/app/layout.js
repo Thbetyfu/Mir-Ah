@@ -35,6 +35,8 @@ export const viewport = {
   ],
 };
 
+import SecurityProvider from '@/components/SecurityProvider';
+
 export default function RootLayout({ children }) {
   return (
     <html lang='id' className='light' suppressHydrationWarning>
@@ -55,9 +57,11 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        <SideNav />
-        <ItikafTimer />
-        {children}
+        <SecurityProvider>
+          <SideNav />
+          <ItikafTimer />
+          {children}
+        </SecurityProvider>
       </body>
     </html>
   );
