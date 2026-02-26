@@ -17,11 +17,7 @@ import DrawerDataManagement from '@/components/User/Drawer/DrawerDataManagement'
 import DrawerTema from '@/components/User/Drawer/DrawerTema';
 import DrawerBantuan from '@/components/User/Drawer/DrawerBantuan';
 import DrawerPrivasi from '@/components/User/Drawer/DrawerPrivasi';
-import DrawerTentang from '@/components/User/Drawer/DrawerTentang';
-import DrawerPengembang from '@/components/User/Drawer/DrawerPengembang';
-import DrawerDonasi from '@/components/User/Drawer/DrawerDonasi';
 import DrawerSyncDevice from '@/components/User/Drawer/DrawerSyncDevice';
-import DrawerGithub from '@/components/User/Drawer/DrawerGithub';
 
 const DRAWERS = {
   EDIT_PROFIL: 'edit_profil',
@@ -30,11 +26,7 @@ const DRAWERS = {
   CONFIRM_RESET: 'confirm_reset',
   BANTUAN: 'bantuan',
   PRIVASI: 'privasi',
-  TENTANG: 'tentang',
-  PENGEMBANG: 'pengembang',
-  DONASI: 'donasi',
   SYNC_DEVICE: 'sync_device',
-  GITHUB: 'github',
 };
 
 export default function UserProfile() {
@@ -210,10 +202,6 @@ export default function UserProfile() {
             <BantuanMenuSection
               onOpenBantuan={() => setActiveDrawer(DRAWERS.BANTUAN)}
               onOpenPrivasi={() => setActiveDrawer(DRAWERS.PRIVASI)}
-              onOpenTentang={() => setActiveDrawer(DRAWERS.TENTANG)}
-              onOpenPengembang={() => setActiveDrawer(DRAWERS.PENGEMBANG)}
-              onOpenDonasi={() => setActiveDrawer(DRAWERS.DONASI)}
-              onOpenGithub={() => setActiveDrawer(DRAWERS.GITHUB)}
             />
           </div>
         </div>
@@ -264,24 +252,8 @@ export default function UserProfile() {
         open={activeDrawer === DRAWERS.PRIVASI}
         onClose={closeDrawer}
       />
-      <DrawerTentang
-        open={activeDrawer === DRAWERS.TENTANG}
-        onClose={closeDrawer}
-      />
-      <DrawerPengembang
-        open={activeDrawer === DRAWERS.PENGEMBANG}
-        onClose={closeDrawer}
-      />
-      <DrawerDonasi
-        open={activeDrawer === DRAWERS.DONASI}
-        onClose={closeDrawer}
-      />
       <DrawerSyncDevice
         open={activeDrawer === DRAWERS.SYNC_DEVICE}
-        onClose={closeDrawer}
-      />
-      <DrawerGithub
-        open={activeDrawer === DRAWERS.GITHUB}
         onClose={closeDrawer}
       />
     </div>
