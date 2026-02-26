@@ -6,9 +6,7 @@ import {
   Info,
   User as UserIcon,
   MessageSquare,
-  Coffee,
   ChevronRight,
-  Github,
 } from 'lucide-react';
 
 const BantuanMenuSection = ({
@@ -16,8 +14,6 @@ const BantuanMenuSection = ({
   onOpenPrivasi,
   onOpenTentang,
   onOpenPengembang,
-  onOpenDonasi,
-  onOpenGithub,
 }) => (
   <div>
     <p className='text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 ml-2'>
@@ -100,7 +96,7 @@ const BantuanMenuSection = ({
         href='https://docs.google.com/forms/d/e/1FAIpQLSeB0TrSZDDrJ-xbmEjdiH5mV30Z4A28PFwSfAmTY0Y_qV265A/viewform?usp=publish-editor'
         target='_blank'
         rel='noreferrer'
-        className='w-full flex items-center justify-between p-4 hover:bg-teal-50 dark:hover:bg-teal-950/30 transition-colors border-b border-slate-50 dark:border-slate-800 group'
+        className='w-full flex items-center justify-between p-4 hover:bg-teal-50 dark:hover:bg-teal-950/30 transition-colors group'
       >
         <div className='flex items-center gap-3'>
           <div className='p-2 rounded-xl bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-400 group-hover:bg-teal-500 group-hover:text-white transition-colors'>
@@ -115,48 +111,6 @@ const BantuanMenuSection = ({
           className='text-slate-300 dark:text-slate-600'
         />
       </a>
-
-      <button
-        onClick={onOpenGithub}
-        className='w-full flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors border-b border-slate-50 dark:border-slate-800 group'
-      >
-        <div className='flex items-center gap-3 text-left'>
-          <div className='p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors'>
-            <Github size={18} />
-          </div>
-          <div>
-            <span className='font-semibold text-slate-700 dark:text-slate-200 text-sm group-hover:text-[#1e3a8a] dark:group-hover:text-blue-400 block'>
-              Open Source (GitHub)
-            </span>
-            <p className='text-[10px] text-slate-400 dark:text-slate-500 mt-0.5'>
-              Pelajari kodenya & jangan lupa traktir kopi{' '}
-              <Coffee size={10} className='inline mb-0.5 text-orange-500' />
-            </p>
-          </div>
-        </div>
-        <ChevronRight
-          size={16}
-          className='text-slate-300 dark:text-slate-600 shrink-0'
-        />
-      </button>
-
-      <button
-        onClick={onOpenDonasi}
-        className='w-full flex-1 flex items-center justify-between p-4 hover:bg-orange-50 dark:hover:bg-orange-950/30 transition-colors group'
-      >
-        <div className='flex items-center gap-3'>
-          <div className='p-2 rounded-xl bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-colors'>
-            <Coffee size={18} />
-          </div>
-          <span className='font-semibold text-slate-700 dark:text-slate-200 text-sm group-hover:text-orange-600 dark:group-hover:text-orange-400'>
-            Traktir Kopi
-          </span>
-        </div>
-        <ChevronRight
-          size={16}
-          className='text-slate-300 dark:text-slate-600'
-        />
-      </button>
     </div>
   </div>
 );
