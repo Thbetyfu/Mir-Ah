@@ -26,6 +26,10 @@ import JurnalCard from '@/components/Home/JurnalCard';
 import MoralMissionCard from '@/components/Home/MoralMissionCard';
 import RamaTalkCard from '@/components/Home/RamaTalkCard';
 import QuoteCard from '@/components/Home/QuoteCard';
+import SholatJadwal from '../components/SholatJadwal';
+import WeatherCard from '../components/WeatherCard';
+import PrayerScheduleBar from '../components/PrayerScheduleBar';
+import WeatherBar from '../components/WeatherBar';
 
 import TrackerDrawer from '@/components/TrackerDrawer';
 import ScheduleDrawer from '@/components/ScheduleDrawer';
@@ -141,6 +145,8 @@ export default function MirAhHome() {
               isItikafMode={isItikafMode}
               toggleItikafMode={toggleItikafMode}
             />
+            <PrayerScheduleBar onPrayerClick={() => setIsScheduleOpen(true)} />
+            <WeatherBar isItikafMode={isItikafMode} latitude={52.52} longitude={13.41} />
             {!isItikafMode && (
               <DailyGoalTracker
                 taskProgress={taskProgress}
