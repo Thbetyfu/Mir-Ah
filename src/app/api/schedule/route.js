@@ -73,10 +73,17 @@ export async function GET(request) {
       }
     }
 
+    const meta = data1.data?.[0]?.meta;
+    const coordinates = meta ? {
+      latitude: meta.latitude,
+      longitude: meta.longitude
+    } : null;
+
     // ─── RETURN RESPONSE ───
     return NextResponse.json(
       {
         location: city,
+        coordinates,
         year: currentYear,
         info: 'Jadwal Ramadhan 2026 (Mulai 19 Feb)',
         schedule,

@@ -6,6 +6,7 @@ import localforage from 'localforage';
 export default function usePrayerTimes() {
   const [prayerTimes, setPrayerTimes] = useState(null);
   const [userCity, setUserCity] = useState('Jakarta');
+  const [coordinates, setCoordinates] = useState({ latitude: -6.1754, longitude: 106.8272 }); // Default: Jakarta
 
   const fetchPrayerTimes = useCallback(async () => {
     try {
@@ -19,6 +20,10 @@ export default function usePrayerTimes() {
       const todayData = data?.schedule?.[0]?.timings;
       if (todayData) {
         setPrayerTimes(todayData);
+      }
+
+      if (data.coordinates) {
+        setCoordinates(data.coordinates);
       }
     } catch (error) {
       console.error('Gagal memuat jadwal sholat:', error);
@@ -38,5 +43,5 @@ export default function usePrayerTimes() {
     };
   }, [fetchPrayerTimes]);
 
-  return { prayerTimes, userCity, fetchPrayerTimes };
+  return { prayerTimes, userCity, coordinates, fetchPrayerTimes };
 }

@@ -57,7 +57,7 @@ export default function MirAhHome() {
   const [isSpinning, setIsSpinning] = useState(false);
 
   const { hijriDate, hijriDay } = useHijriDate();
-  const { prayerTimes, userCity, fetchPrayerTimes } = usePrayerTimes();
+  const { prayerTimes, userCity, coordinates, fetchPrayerTimes } = usePrayerTimes();
   const { taskProgress, fetchTrackerSummary } = useTrackerSummary(user, true);
   const { notifications, hasUnreadNotif, markAsRead } = useNotifications(
     mounted,
@@ -146,7 +146,11 @@ export default function MirAhHome() {
               toggleItikafMode={toggleItikafMode}
             />
             <PrayerScheduleBar onPrayerClick={() => setIsScheduleOpen(true)} />
-            <WeatherBar isItikafMode={isItikafMode} latitude={52.52} longitude={13.41} />
+            <WeatherBar
+              isItikafMode={isItikafMode}
+              latitude={coordinates.latitude}
+              longitude={coordinates.longitude}
+            />
             {!isItikafMode && (
               <DailyGoalTracker
                 taskProgress={taskProgress}
